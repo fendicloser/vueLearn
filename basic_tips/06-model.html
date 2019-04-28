@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model='inputText'/>
+        <div>{{inputText}}</div>
+        <select v-model='selectedValue'>
+            <option v-for="(elem,i) of optionArr" :value="elem">{{elem}}</option>
+        </select>
+        <div :style='divStyle'></div>
+    </div>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                selectedValue:'',
+                optionArr:['#ffff00','#ff00ff','#f0f0f0','#00ffff','#00ff00'],
+                divStyle:{
+                    width:'200px',
+                    height:'200px',
+                    backgroundColor:'#00ff00',
+                }
+            },
+            watch:{
+                selectedValue(){
+                    this.divStyle.backgroundColor=this.selectedValue
+                    console.log(this.selectedValue)
+                }
+            }
+            
+        })
+    </script>
+</body>
+</html>

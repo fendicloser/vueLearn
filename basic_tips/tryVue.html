@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.min.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <span>{{n}}</span>
+        <button @click="add">+</button>
+        <button @click="show">console</button>
+    </div>
+    <script>
+        var data={
+            n:1
+        };
+        new Vue({
+            el:'#app',
+            data:data,
+            methods:{
+                add:()=>data.n++,//this.n++,
+                show:()=>alert(data.n),
+            }
+        })
+    </script>
+</body>
+</html>

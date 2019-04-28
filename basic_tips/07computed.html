@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ul>
+               
+            <li v-for='(elem,i) of option'>{{elem.goodName}}__{{parseInt(elem.price)}}</li>
+        </ul>
+        <div>{{todo}}</div>
+    </div>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                option:[
+                    {
+                        goodId:0,
+                        goodName:'',
+                        price:parseInt(Math.random()*50)
+                    },
+                    {
+                        goodId:0,
+                        goodName:'',
+                        price:parseInt(Math.random()*50)
+                    },
+                    {
+                        goodId:1,
+                        goodName:'',
+                        price:parseInt(Math.random()*50)
+                    },
+                    {
+                        goodId:2,
+                        goodName:'',
+                        price:parseInt(Math.random()*50)
+                    },
+                    {
+                        goodId:3,
+                        goodName:'',
+                        price:parseInt(Math.random()*50)
+                    },
+                ]
+            },
+            created(){
+                for(var i=0;i<this.option.length;i++){
+                    this.option[i].goodName=this.funC()
+                }
+            },
+            methods:{
+                RandomNumBoth:function(Min,Max){
+                    var Range = Max - Min;
+                    var Rand = Math.random();
+                    var num = Min + Math.round(Rand * Range); //四舍五入
+                    return num;
+                },
+                funC:function(){
+                    var num=5,
+                        start=parseInt('4e00',16),
+                        end=parseInt('9fa5',16);
+                    var arr=[]
+                    for(var i=0;i<=num+1;i++){
+                        var random=this.RandomNumBoth(start,end),
+                            strRandom=String.fromCharCode(random)
+                        arr.push(strRandom)
+                    }
+                    return arr.join('')
+                }
+
+            },
+            computed:{
+                todo(){
+                    var sum=0;
+                    for(var i=0;i<this.option.length;i++){
+                        sum+=this.option[i].price
+                    }
+                    return sum
+                }
+            }
+
+            
+        })
+      
+    </script>
+    
+</body>
+</html>

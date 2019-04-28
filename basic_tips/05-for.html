@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.min.js">
+    
+    </script>
+</head>
+<body>
+    <div id="app">
+        <input id='firstInput' type="text" v-model='firstInput'/>
+        <button @click='onclick'>click and acquire</button>
+        <input v-on:lfocus="onFocus" v-on:blur='onBlur' v-on:input ='onInput' id='secondInput' type="text" v-model='secondInput'>
+        <ul>
+            <li v-for="(elem,i) of dataLoop">这个是下标{{i}}-----这个是内容{{elem}}</li>
+        </ul>
+    </div>
+    
+    <script>
+     new Vue({
+         el:'#app',
+         data:{
+            dataLoop:[1,2,3,4],
+            firstInput:0,
+            secondInput:'',
+         },
+         mounted(){console.log(this.dataLoop)},
+         methods:{
+             onclick(){
+                 var a=parseInt(this.firstInput)
+                 if(!isNaN(parseInt(a))){
+                   
+
+                     for(var i=0;i<a;i++){
+                         this.dataLoop.push('1')
+                     }
+                     console.log(this.dataLoop)
+                    
+                 }
+
+                //this.dataLoop.push(this.firstInput)
+
+                
+             },
+             onFocus(){alert('123')},
+             onBlur(){
+                 alert('123')
+             },
+             onInput(){
+                 console.log('aaa')
+             }
+         }
+
+     })
+    </script>
+    
+</body>
+</html>
