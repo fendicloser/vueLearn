@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.min.js"></script>
+</head>
+<body>
+    双花括号中可以写js语句。
+
+    <div id="app">
+        <h1>username:{{username}}</h1>
+        <h1>score:{{score}}</h1>
+        <h3>score:{{sex==1?'male':'female'}}</h3>
+        <h3>data:{{date.getDate()}}</h3>
+        <h3>{{price*count}}</h3>
+        注意，vue的属性中的写法不一样了
+        <img :src="imageSrc" />
+    </div>
+
+    <script>
+        var data=
+        new Vue({
+            el:'#app',
+            data:{
+                count:5,
+                price:22.12,
+                username:'fendicloser',
+                score:3000,
+                date:new Date(),
+                sex:1,
+                imageSrc:"1.jpeg"
+            },
+            methods:{
+
+            }
+
+        })
+    
+    </script>
+</body>
+</html>

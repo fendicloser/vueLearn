@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <todo></todo>
+    </div>
+    <template id='tplTodo'>
+        <div>
+            <h1>代办事件列表</h1>
+            <todo-add :tasks='tasks'></todo-add>
+            <todo-list :tasks="tasks"></todo-list>
+        </div>
+    </template>
+    <template id="tplTodoAdd">
+        <div>
+            <input type='text' v-model='newItem'>{{newItem}}<button @click='add'>add{{tasks}}</button>
+        </div>
+    </template>
+    <template id='tplTodoList'>
+        <ul>
+            <todo-item :key='i' v-for="(task,i) of tasks" :task="task" :i="i" :tasks='tasks'></todo-item>
+        </ul>
+    </template>
+    <template id='tplTodoItem'>
+        <li>{{i+1}}-{{task}}__{{tasks}}<button @click="del">X</button></li>
+    </template>
+    <script>
+        var todoAdd={
+            template:'#tplTodoAdd',
+            props:['tasks'],
+            data(){return {newItem:''}},
+            methods:{
+                add(){
+                    if(this.newItem!=''){
+                        this.tasks.push(this.newItem)
+                        this.newItem=''
+                    }
+                    
+                }
+                
+            }
+        }
+        var todoItem={
+            template:'#tplTodoItem',
+            props:['task',"i",'tasks'],
+            data(){return {}},
+            methods:{
+                del(){
+                    if(confirm(`是否删除${this.task}`)){
+                        this.tasks.splice(this.i,1);
+                    }
+                }
+            }
+        }
+        var todoList={
+            template:'#tplTodoList',
+            props:['tasks'],
+            data(){return {}},
+            components:{todoItem}
+        }
+
+        Vue.component('todo',{
+            template:'#tplTodo',
+            data(){return {
+                tasks:['eat','sleep','playing game','programming']
+            }},
+            components:{todoAdd,todoList}
+        })
+        var vm=new Vue({
+            el:'#app'
+        })
+    </script>
+</body>
+</html>
