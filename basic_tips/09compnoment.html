@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.min.js">
+    </script>
+</head>
+<body>
+
+    <div id="app">
+        <my-counter></my-counter>
+        <my-counter></my-counter>
+        <my-counter></my-counter>
+    </div>
+
+    <div id='tplCounter' style="display:none">
+        <div>
+            必须放在一个父元素中
+                <button @click='subtract'>-</button>
+                <span>{{n}}</span>
+                <button @click='add'>+</button>
+        </div>
+    </div>
+
+    <script>
+        Vue.component('my-counter',{
+            template:'#tplCounter',
+            data:function(){
+                return {
+                    n:1
+                }
+            },
+            methods:{
+                add(){
+                    this.n++;
+                    console.log(this.n)
+                },
+                subtract(){
+                    if(this.n>=1){
+                        this.n--
+                    }
+                }
+
+            },
+        })
+
+        new Vue({
+            el:'#app',
+
+        })
+    </script>
+</body>
+</html>

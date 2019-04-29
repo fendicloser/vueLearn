@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type='text' v-model='sayHello' v-on:keypress='onKeyPress' v-focus/>
+        <div>{{sayHello}}</div>
+
+    </div>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                sayHello:'',
+            },
+            methods:{
+                onKeyPress(e){
+                    if(e.which==13||e.keycode==13){
+                        alert(this.sayHello)
+                    }
+                }
+
+            }
+        })
+        Vue.directive('focus',{
+            inserted(elem){
+                elem.focus()
+            }
+        })
+    
+    </script>
+    
+</body>
+</html>
