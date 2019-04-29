@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.min.js">
+    </script>
+</head>
+<body>
+    <div id="app">
+        <h1>最简单的关于组件化开发和props传值的例子，详细todolist例子需要看10_todo_linshi.html</h1>
+        <parent-com />
+    </div>
+    <template id="tplParent">
+        <div>
+            <input type="text" v-model='inputed'>
+            <child-com :inputed='inputed' />
+        </div>
+    </template>
+    <template id='tplChild'>
+        <div>
+            <h1>输出的是：{{inputed}}</h1>
+        </div>
+    </template>
+    <script>
+        var childCom={
+            template:'#tplChild',
+            props:['inputed']
+        }
+        Vue.component('parentCom',{
+            template:'#tplParent',
+            data(){
+                return {inputed:''}
+            },
+            components:{childCom}
+        })
+        var vm=new Vue({
+            el:'#app'
+        })
+    </script>
+</body>
+</html>

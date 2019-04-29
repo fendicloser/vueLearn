@@ -9,14 +9,14 @@
     </script>
 </head>
 <body>
-
     <div id="app">
+        html不区分大小写，所以不要用驼峰命名
         <my-counter></my-counter>
         <my-counter></my-counter>
         <my-counter></my-counter>
+        <button @click='sum'></button>
     </div>
-
-    <div id='tplCounter' style="display:none">
+    <div id='tpl-Counter' style="display:none">
         <div>
             必须放在一个父元素中
                 <button @click='subtract'>-</button>
@@ -24,10 +24,9 @@
                 <button @click='add'>+</button>
         </div>
     </div>
-
     <script>
         Vue.component('my-counter',{
-            template:'#tplCounter',
+            template:'#tpl-Counter',
             data:function(){
                 return {
                     n:1
@@ -36,19 +35,21 @@
             methods:{
                 add(){
                     this.n++;
-                    console.log(this.n)
                 },
                 subtract(){
                     if(this.n>=1){
                         this.n--
                     }
                 }
-
             },
         })
-
         new Vue({
             el:'#app',
+            methods:{
+                sum(){
+
+                }
+            }
 
         })
     </script>
