@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.min.js"></script>
+    <script src="vue-router.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h3>this is hand of page</h3>
+        <h1>路由传参</h1>
+        <ul>
+            <li><router-link to='/index' />首页</li>
+            <li><router-link to='/login'>登陆</router-link></li>
+        </ul>
+        <router-view />
+    </div>
+    <template id="tplIndex">
+        <div>
+            <h1 style="background-color:red">index page</h1>
+            <div style="background-color:aquamarine"><router-link style='width: 200px;height:200px;background-color:lightslategray' to='/detail/5' />5</div>
+            <router-link to='/detail/3' />3<br>
+            <router-link to='/detail/2' />2<br>
+        </div>
+    </template>
+    <template id='tplDetials'>
+        <h1 style="background-color:skyblue">detail page{{lid}}</h1>
+
+    </template>
+    <template id="tplLogin">
+        <h1 style="background-color:yellow">login page</h1>
+    </template>
+    <script>
+        var index={
+            template:'#tplIndex'
+        }
+        var detail={
+            template:'#tplDetials',
+            props:['lid']
+        }
+        var login={
+            template:'#tplLogin'
+        }
+        var notFound={
+            template:`<h2>not found</h2>`
+        }
+        var routes=[
+            {path:'/',component:index},
+            {path:'/index',component:index},
+            {path:'/detail/:lid',component:detail,props:true},
+            {path:'/login',component:login},
+            {path:'/*',component:notFound}
+        ]
+    var router=new VueRouter({routes})
+     var vm=new Vue({
+         el:'#app',
+         router //4 把路由器放入app中
+     })
+    </script>
+    
+</body>
+</html>
