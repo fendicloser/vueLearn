@@ -7,6 +7,7 @@ import laptop from './components/goods/laptop'
 import phone from './components/goods/phone'
 import watch from './components/goods/watch'
 import shoes from './components/goods/shoes'
+import notFound from './views/notFound.vue'
 
 Vue.use(Router)
 
@@ -51,6 +52,7 @@ export default new Router({
       name: 'home',
       component: Home
     },
+    
     {
       path: '/about',
       name: 'about',
@@ -58,6 +60,11 @@ export default new Router({
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-    }
+    },
+    {
+      path:'/*',
+      name:'notFound',
+      component:notFound
+    },
   ]
 })

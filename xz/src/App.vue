@@ -4,11 +4,23 @@
       <router-link to='/goodSelection'>商品选择</router-link> |
       <router-link to='/new'>newValue</router-link> |
       <router-link to="/">Hodme</router-link> |
-      <router-link to="/about">Afut</router-link>
+      <router-link to="/about">Afut</router-link> |
+      <button @click="goback">hahha</button>
+   
     </div>
     <router-view/>
   </div>
 </template>
+<script>
+export default {
+    methods:{
+      goback:function(){
+        this.$router.push({path:'/goodSelection'})
+      }
+    }
+}
+
+</script>
 
 <style>
 #app {
